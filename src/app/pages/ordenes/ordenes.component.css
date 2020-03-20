@@ -1,0 +1,17 @@
+form{
+    width: 50vw;
+    padding-left: 5vw;
+    padding-top: 10vh;
+}
+.example-full-width{
+    width: 100%;
+}
+
+.form-row{
+    padding-top: 5px;
+}
+.title{
+    top:15px;
+    left: 15px;
+    position: absolute;
+}

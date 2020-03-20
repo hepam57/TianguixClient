@@ -1,0 +1,29 @@
+.example-container {
+    width: 100vw;
+    height: 100vh;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+  }
+  .mat-list-item{
+    color: #ffffff;
+  }
+  mat-icon {
+    margin-right: 5%;
+  }
+  mat-toolbar {
+    color: #ffffff;
+    background: inherit;
+  }
+  .example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .example-sidenav {
+    background-color: #43425d;
+  }
+
+  mat-nav-list{
+    width: 250px;
+  }

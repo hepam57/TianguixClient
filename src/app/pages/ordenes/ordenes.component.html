@@ -1,0 +1,98 @@
+<h1 class="title">Ordenes</h1>
+<form [formGroup]="CrearOrdenesForm" (ngSubmit)="SendData(CrearOrdenesForm.value)">
+    <div class="form-row">
+        <mat-form-field class="example-full-width">
+            <mat-label>Afiliado</mat-label>
+            <mat-select [formControl]="CrearOrdenesForm.get('afiliado')" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let afiliado_ of afiliados" [value]="afiliado_.id">
+                {{afiliado_.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.CrearOrdenesForm.get('afiliado')?.hasError('required')">Por favor seleccione un afiliado</mat-error>
+            <!--<mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
+          </mat-form-field>        
+    </div>
+
+    <div class="form-row">
+        <mat-form-field class="example-full-width">
+            <mat-label>Instrumento</mat-label>
+            <mat-select [formControl]="CrearOrdenesForm.get('instrumento')" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let instrumento_ of instrumentos" [value]="instrumento_">
+                {{instrumento_.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.CrearOrdenesForm.get('instrumento')?.hasError('required')">Por favor seleccione un instrumento</mat-error>
+            <mat-hint>{{CrearOrdenesForm.get('instrumento').value?.tipo}}</mat-hint>
+          </mat-form-field>        
+    </div> 
+
+    <div class="form-row">
+        <mat-form-field class="example-full-width">
+            <mat-label>Especie</mat-label>
+            <mat-select [formControl]="CrearOrdenesForm.get('especie')" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let especie_ of especies" [value]="especie_">
+                {{especie_.nombre}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="this.CrearOrdenesForm.get('especie')?.hasError('required')">Por favor seleccione una especie</mat-error>
+          </mat-form-field>        
+    </div> 
+
+    <div class="form-row">
+        <mat-form-field class="example-full-width">
+            <mat-label>Precio</mat-label>
+            <input matInput currencyMask [options]="{ prefix: '$ ', thousands: '.', decimal: ',',precision:'0' }"  [formControl]="CrearOrdenesForm.get('precio')"  required>
+            <!--<span matPrefix>$&nbsp;</span>-->
+            <mat-error *ngIf="this.CrearOrdenesForm.get('precio')?.hasError('required')">
+              El precio es <strong>requerido</strong>
+            </mat-error>
+            <mat-error *ngIf="this.CrearOrdenesForm.get('precio')?.hasError('min')">
+                El precio no puede ser inferior a <strong>0</strong>
+              </mat-error>
+          </mat-form-field>
+    </div>
+    <div class="form-row">
+        <mat-form-field class="example-full-width">
+            <mat-label>Cantidad</mat-label>
+            <input matInput type="number" [formControl]="CrearOrdenesForm.get('cantidad')"  required>
+            <mat-error *ngIf="this.CrearOrdenesForm.get('cantidad')?.hasError('required')">
+                La cantidad es <strong>requerida</strong>
+            </mat-error>
+            <mat-error *ngIf="this.CrearOrdenesForm.get('cantidad')?.hasError('min')">
+                La cantidad no puede ser inferior a <strong>0</strong>
+            </mat-error>
+          </mat-form-field>
+    </div>
+    <div class="form-row">
+        <label>Tipo orden: </label>
+        <mat-radio-group class="w-100" aria-label="Select an option" [formControl]="CrearOrdenesForm.get('tipoOrden')" >
+            <mat-radio-button value="0" >Compra</mat-radio-button>
+            <mat-radio-button value="1"class="pl-5">Venta</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="form-row">
+        <label>Tipo oferta: </label>
+        <mat-radio-group class="w-100"aria-label="Select an option" [formControl]="CrearOrdenesForm.get('tipoOferta')">
+            <mat-radio-button value="0">Permanente</mat-radio-button>
+            <mat-radio-button value="1" class="pl-5">Mejor precio</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    
+    <div class="form-row">
+        <mat-form-field class="example-full-width">
+            <mat-label>Trader</mat-label>
+            <input matInput [formControl]="CrearOrdenesForm.get('trader')" required>
+            <mat-hint>Errors appear instantly!</mat-hint>
+            <mat-error *ngIf="this.CrearOrdenesForm.get('instrumento')?.hasError('required')">
+                Trader es <strong>requerido</strong>
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div class="form-row">
+      <button type="submit" [disabled]="!CrearOrdenesForm.valid" mat-stroked-button color="primary">Enviar</button>
+    </div>
+    
+</form>
